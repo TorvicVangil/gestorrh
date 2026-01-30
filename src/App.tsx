@@ -4,8 +4,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { AuthPage } from "./pages/AuthPage";
 
 // Recruitment Pages
 import { CandidatesPage } from "./pages/recruitment/CandidatesPage";
@@ -22,9 +24,11 @@ import { MedicalCertificatesPage } from "./pages/portal/MedicalCertificatesPage"
 
 const queryClient = new QueryClient();
 
-// Wrapper for pages that need the AppLayout
-const PageWrapper = ({ children }: { children: React.ReactNode }) => (
-  <AppLayout>{children}</AppLayout>
+// Wrapper for pages that need the AppLayout and protection
+const ProtectedPageWrapper = ({ children }: { children: React.ReactNode }) => (
+  <ProtectedRoute>
+    <AppLayout>{children}</AppLayout>
+  </ProtectedRoute>
 );
 
 const App = () => (
@@ -34,21 +38,24 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Dashboard - has its own layout */}
-          <Route path="/" element={<Index />} />
+          {/* Auth Route */}
+          <Route path="/auth" element={<AuthPage />} />
+          
+          {/* Dashboard - protected */}
+          <Route path="/" element={<ProtectedPageWrapper><Index /></ProtectedPageWrapper>} />
           
           {/* Recruitment Routes */}
-          <Route path="/recrutamento/candidatos" element={<PageWrapper><CandidatesPage /></PageWrapper>} />
-          <Route path="/recrutamento/vagas" element={<PageWrapper><JobOpeningsPage /></PageWrapper>} />
+          <Route path="/recrutamento/candidatos" element={<ProtectedPageWrapper><CandidatesPage /></ProtectedPageWrapper>} />
+          <Route path="/recrutamento/vagas" element={<ProtectedPageWrapper><JobOpeningsPage /></ProtectedPageWrapper>} />
           
           {/* Employee Routes */}
-          <Route path="/funcionarios" element={<PageWrapper><EmployeesPage /></PageWrapper>} />
-          <Route path="/funcionarios/documentos" element={<PageWrapper><DocumentsPage /></PageWrapper>} />
+          <Route path="/funcionarios" element={<ProtectedPageWrapper><EmployeesPage /></ProtectedPageWrapper>} />
+          <Route path="/funcionarios/documentos" element={<ProtectedPageWrapper><DocumentsPage /></ProtectedPageWrapper>} />
           
           {/* Portal Routes */}
-          <Route path="/portal/holerites" element={<PageWrapper><PayslipsPage /></PageWrapper>} />
-          <Route path="/portal/ferias" element={<PageWrapper><VacationsPage /></PageWrapper>} />
-          <Route path="/portal/atestados" element={<PageWrapper><MedicalCertificatesPage /></PageWrapper>} />
+          <Route path="/portal/holerites" element={<ProtectedPageWrapper><PayslipsPage /></ProtectedPageWrapper>} />
+          <Route path="/portal/ferias" element={<ProtectedPageWrapper><VacationsPage /></ProtectedPageWrapper>} />
+          <Route path="/portal/atestados" element={<ProtectedPageWrapper><MedicalCertificatesPage /></ProtectedPageWrapper>} />
           
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />

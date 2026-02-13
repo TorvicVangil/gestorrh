@@ -17,6 +17,9 @@ import { JobOpeningsPage } from "./pages/recruitment/JobOpeningsPage";
 import { EmployeesPage } from "./pages/employees/EmployeesPage";
 import { DocumentsPage } from "./pages/employees/DocumentsPage";
 
+// Payroll Pages
+import { PayrollPage } from "./pages/payroll/PayrollPage";
+
 // Portal Pages
 import { PayslipsPage } from "./pages/portal/PayslipsPage";
 import { VacationsPage } from "./pages/portal/VacationsPage";
@@ -51,6 +54,9 @@ const App = () => (
           {/* Employee Routes */}
           <Route path="/funcionarios" element={<ProtectedPageWrapper><EmployeesPage /></ProtectedPageWrapper>} />
           <Route path="/funcionarios/documentos" element={<ProtectedPageWrapper><DocumentsPage /></ProtectedPageWrapper>} />
+          
+          {/* Payroll Routes */}
+          <Route path="/folha-pagamento" element={<ProtectedPageWrapper><PayrollPage /></ProtectedPageWrapper>} />
           
           {/* Portal Routes */}
           <Route path="/portal/holerites" element={<ProtectedPageWrapper><PayslipsPage /></ProtectedPageWrapper>} />

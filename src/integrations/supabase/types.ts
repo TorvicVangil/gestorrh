@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      payroll_records: {
+        Row: {
+          attendance_bonus: number
+          base_salary: number
+          bonus: number
+          created_at: string
+          employee_id: string
+          employee_name: string
+          gross_salary: number
+          id: string
+          inss_discount: number
+          irrf_discount: number
+          month: number
+          net_salary: number
+          notes: string | null
+          other_discounts: number
+          other_discounts_description: string | null
+          overtime_hours: number
+          overtime_rate: number
+          overtime_value: number
+          updated_at: string
+          user_id: string
+          vr_discount: number
+          vt_discount: number
+          year: number
+        }
+        Insert: {
+          attendance_bonus?: number
+          base_salary?: number
+          bonus?: number
+          created_at?: string
+          employee_id: string
+          employee_name: string
+          gross_salary?: number
+          id?: string
+          inss_discount?: number
+          irrf_discount?: number
+          month: number
+          net_salary?: number
+          notes?: string | null
+          other_discounts?: number
+          other_discounts_description?: string | null
+          overtime_hours?: number
+          overtime_rate?: number
+          overtime_value?: number
+          updated_at?: string
+          user_id: string
+          vr_discount?: number
+          vt_discount?: number
+          year: number
+        }
+        Update: {
+          attendance_bonus?: number
+          base_salary?: number
+          bonus?: number
+          created_at?: string
+          employee_id?: string
+          employee_name?: string
+          gross_salary?: number
+          id?: string
+          inss_discount?: number
+          irrf_discount?: number
+          month?: number
+          net_salary?: number
+          notes?: string | null
+          other_discounts?: number
+          other_discounts_description?: string | null
+          overtime_hours?: number
+          overtime_rate?: number
+          overtime_value?: number
+          updated_at?: string
+          user_id?: string
+          vr_discount?: number
+          vt_discount?: number
+          year?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

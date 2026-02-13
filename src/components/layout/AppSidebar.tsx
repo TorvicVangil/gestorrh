@@ -6,7 +6,8 @@ import {
   ClipboardList,
   Building2,
   Home,
-  Settings
+  Settings,
+  Calculator
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -44,6 +45,12 @@ const menuGroups = [
     items: [
       { title: "Cadastro", url: "/funcionarios", icon: Users },
       { title: "Documentos", url: "/funcionarios/documentos", icon: FileText },
+    ]
+  },
+  {
+    label: "Financeiro",
+    items: [
+      { title: "Folha de Pagamento", url: "/folha-pagamento", icon: Calculator },
     ]
   },
   {
